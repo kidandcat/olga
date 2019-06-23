@@ -21,7 +21,10 @@ fastify.get('/card', (request, reply) => {
 })
 
 fastify.post('/new', (request, reply) => {
-  db.insert(request.body, (err, newDoc) => {
+  db.insert({
+    ...request.body,
+    _id: makeid(15)
+  }, (err, newDoc) => {
     if (err) {
       reply.code(500).send(err.message)
       return
@@ -34,3 +37,13 @@ fastify.listen(7700, (err, address) => {
   if (err) throw err
   fastify.log.info(`server listening on ${address}`)
 })
+
+function makeid (length) {
+  var result = ''
+  var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  var charactersLength = characters.length
+  for (var i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength))
+  }
+  return result
+}
