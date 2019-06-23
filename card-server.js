@@ -30,7 +30,7 @@ fastify.post('/new', (request, reply) => {
   })
 })
 
-fastify.listen(3000, (err, address) => {
+fastify.listen(7700, (err, address) => {
   if (err) throw err
   fastify.log.info(`server listening on ${address}`)
 })
