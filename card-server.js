@@ -1,9 +1,8 @@
 const Datastore = require('nedb')
 const db = new Datastore({ filename: 'card.db', autoload: true })
 
-const fastify = require('fastify')({
-  logger: true
-})
+const fastify = require('fastify')()
+fastify.register(require('fastify-cors'))
 
 fastify.get('/card', (request, reply) => {
   if (!request.query.id) {
