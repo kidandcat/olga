@@ -13,7 +13,7 @@ fastify.get('/card', (request, reply) => {
     if (err) {
       reply.code(500).send(err.message)
     } else if (doc) {
-      reply.send(doc)
+      reply.send(JSON.stringify(doc))
     } else {
       reply.code(404).send()
     }
